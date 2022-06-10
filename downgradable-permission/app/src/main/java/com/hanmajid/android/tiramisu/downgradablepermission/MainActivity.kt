@@ -61,19 +61,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
         buttonRevokeCameraPermission.setOnClickListener {
-            if (Build.VERSION.CODENAME == "Tiramisu") {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 revokeOwnPermissionOnKill(Manifest.permission.CAMERA)
                 showRevokeSuccessSnackBar()
             }
         }
         buttonRevokeCallPermission.setOnClickListener {
-            if (Build.VERSION.CODENAME == "Tiramisu") {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 revokeOwnPermissionOnKill(Manifest.permission.CALL_PHONE)
                 showRevokeSuccessSnackBar()
             }
         }
         buttonRevokeAllPermissions.setOnClickListener {
-            if (Build.VERSION.CODENAME == "Tiramisu") {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 revokeOwnPermissionsOnKill(requiredPermissions.toList())
                 showRevokeSuccessSnackBar()
             }
