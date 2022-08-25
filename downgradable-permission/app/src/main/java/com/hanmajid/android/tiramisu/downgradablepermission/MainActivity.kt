@@ -1,16 +1,15 @@
 package com.hanmajid.android.tiramisu.downgradablepermission
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import kotlin.system.exitProcess
@@ -44,7 +43,6 @@ class MainActivity : AppCompatActivity() {
     /**
      * Initialize UI elements for the first time.
      */
-    @SuppressLint("NewApi")
     private fun initializeUI() {
         buttonRequestPermissions = findViewById(R.id.button_request_permission)
         buttonRevokeCameraPermission = findViewById(R.id.button_revoke_camera_permission)
@@ -62,19 +60,19 @@ class MainActivity : AppCompatActivity() {
         }
         buttonRevokeCameraPermission.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                revokeOwnPermissionOnKill(Manifest.permission.CAMERA)
+                revokeSelfPermissionOnKill(Manifest.permission.CAMERA)
                 showRevokeSuccessSnackBar()
             }
         }
         buttonRevokeCallPermission.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                revokeOwnPermissionOnKill(Manifest.permission.CALL_PHONE)
+                revokeSelfPermissionOnKill(Manifest.permission.CALL_PHONE)
                 showRevokeSuccessSnackBar()
             }
         }
         buttonRevokeAllPermissions.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                revokeOwnPermissionsOnKill(requiredPermissions.toList())
+                revokeSelfPermissionsOnKill(requiredPermissions.toList())
                 showRevokeSuccessSnackBar()
             }
         }
